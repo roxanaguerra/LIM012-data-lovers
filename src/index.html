@@ -2,11 +2,54 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Data Lovers</title>
+    <title>Data Lovers - Pokemon</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="root"></div>
+    <header>
+      <a href="index.html"><img src="img/logo_datalovers.png" class="img_logo" alt="Logo Pokemon"></a>
+      <!-- <nav>
+        <ul class="menu">
+          <li><a href="index.hmml">Pokedex</a></li>
+        </ul>
+      </nav>  -->
+    </header>
+    <input type="text" placeholder="Search for Name" class="square search_name">
+    <select name="select" id="select_type" class="square select_filter">
+      <option value="">Type</option>
+      <option value="">Normal</option>
+      <option value="">Fighting</option>
+      <option value="">Flying</option>
+      <option value="">Poison</option>
+      <option value="">Ground</option>
+      <option value="">Rock</option>
+      <option value="">Bug</option>
+      <option value="">Ghost</option>
+      <option value="">Steel</option>
+      <option value="">Fire</option> 
+      <option value="">Water</option> 
+      <option value="">Grass</option> 
+      <option value="">Electric</option> 
+      <option value="">Psychic</option> 
+      <option value="">Ice</option> 
+      <option value="">Dragon</option> 
+      <option value="">Dark</option>
+      <option value="">Fairy</option>  
+    </select>
+    <select name="select" id="select_egg" class="square select_filter">
+      <option value="">Egg x Km</option>
+      <option value="">2 Km</option>
+      <option value="">5 Km</option>
+      <option value="">7 Km</option>
+      <option value="">10 Km</option>        
+    </select>
+    <select name="select" id="select_region" class="square select_filter">
+      <option value="">Region</option>
+      <option value="">Kanto</option>
+      <option value="">Johto</option>       
+    </select>
+    <div id="pokemon_Data">
+    </div>
     <script src="main.js" type="module"></script>
   </body>
 </html>

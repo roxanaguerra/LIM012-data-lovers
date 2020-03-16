@@ -3,14 +3,14 @@
 ## Índice
 
 * [1. Definición del proyecto](#1-definicion-del-proyecto)
-* [2. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)
+* [2. Objetivos de aprendizaje](#2-objetivos-de-aprendizaje)
 * [3. Checklist](#3-checklist)
 
 ***
 
 ## 1. Definición del proyecto
 
-Nuestr@s principales usuari@s son personas que tienen poco tiempo coleccionando o evolucionando un pokemons.
+Nuestr@s principales usuari@s son personas que tienen poco tiempo coleccionando o evolucionando pokemons.
 
 El objetivo de los usuari@s es ver la informacion sobra captura y evolución de los pokemons.
 
@@ -27,14 +27,16 @@ Utilizarian el producto antes de salir a capturar pokemons, como una estrategia 
 #### Prototipo de baja fidelidad
 
 Primera Historia
+![desktop](https://github.com/luzma-coder/LIM012-data-lovers/blob/master/src/screen/p1.jpg)   ![responsive](https://github.com/luzma-coder/LIM012-data-lovers/blob/master/src/screen/r1.jpg)
 
 Segunda Historia
+![desktop](https://github.com/luzma-coder/LIM012-data-lovers/blob/master/src/screen/p2.jpeg)   ![responsive](https://github.com/luzma-coder/LIM012-data-lovers/blob/master/src/screen/r2.jpg)
 
 #### Prototipo de alta fidelidad
 
 Primera Historia
-
-Segunda Historia
+![desktop](https://www.figma.com/proto/ZqauuPt3dT0KlSMZlNWn8m/pokemon?node-id=1%3A2&scaling=min-zoom)
+![responsive]()
 
 #### Testeos de usabilidad
 

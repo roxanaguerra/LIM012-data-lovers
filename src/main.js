@@ -2,29 +2,29 @@
 import data from './data/pokemon/pokemon.js';
 
 // mostrar los datos en la pantalla
-const dataPokemon = document.getElementById('pokemon_Data');
+const dataPokemon = document.getElementById('data_Pokemon');
 
 const typesPokemon = (arrPokemon) => {
-  let linepok = '';
+  let styleTypePokemon = '';
   for (let i = 0; i < arrPokemon.length; i += 1) {
-    linepok += `<span class="typtext pok_type_${arrPokemon[i]}">${arrPokemon[i]}</span>`;
+    styleTypePokemon += `<span class="type_Text pok_type_${arrPokemon[i]}">${arrPokemon[i]}</span>`;
   }
-  return linepok;
+  return styleTypePokemon;
 };
 
 const allPokemon = () => {
-  let info = '';
+  let infoPokemon = '';
   data.pokemon.forEach((obj) => {
-    info += `
-    <div class = "pokemonInfo">
+    infoPokemon += `
+    <div class = "info_Pokemon">
         <img src="${obj.img}">
-        <p class="pokemonnum">#${obj.num}</p>
+        <p class="num_Pokemon">#${obj.num}</p>
         <h5>${obj.name[0].toUpperCase()}${obj.name.substring(1)}</h5>
         <p>${typesPokemon(obj.type)}</p>
     </div>
     `;
   });
-  return info;
+  return infoPokemon;
 };
 
 dataPokemon.innerHTML = allPokemon();

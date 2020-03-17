@@ -6,50 +6,72 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="root"></div>
     <header>
-      <a href="index.html"><img src="img/logo_datalovers.png" class="img_logo" alt="Logo Pokemon"></a>
-      <!-- <nav>
-        <ul class="menu">
-          <li><a href="index.hmml">Pokedex</a></li>
-        </ul>
-      </nav>  -->
-    </header>
-    <input type="text" placeholder="Search for Name" class="square search_name">
-    <select name="select" id="select_type" class="square select_filter">
-      <option value="">Type</option>
-      <option value="">Normal</option>
-      <option value="">Fighting</option>
-      <option value="">Flying</option>
-      <option value="">Poison</option>
-      <option value="">Ground</option>
-      <option value="">Rock</option>
-      <option value="">Bug</option>
-      <option value="">Ghost</option>
-      <option value="">Steel</option>
-      <option value="">Fire</option> 
-      <option value="">Water</option> 
-      <option value="">Grass</option> 
-      <option value="">Electric</option> 
-      <option value="">Psychic</option> 
-      <option value="">Ice</option> 
-      <option value="">Dragon</option> 
-      <option value="">Dark</option>
-      <option value="">Fairy</option>  
-    </select>
-    <select name="select" id="select_egg" class="square select_filter">
-      <option value="">Egg x Km</option>
-      <option value="">2 Km</option>
-      <option value="">5 Km</option>
-      <option value="">7 Km</option>
-      <option value="">10 Km</option>        
-    </select>
-    <select name="select" id="select_region" class="square select_filter">
-      <option value="">Region</option>
-      <option value="">Kanto</option>
-      <option value="">Johto</option>       
-    </select>
-    <div id="pokemon_Data">
-    </div>
+        <a href="index.html"><img src="img/logo_datalovers.png" class="img_logo"></a>
+        <nav>
+          <ul class="menu">
+            <li><a href="">POKEDEX</a></li>
+          </ul>
+        </nav>      
+    </header>      
+    <main>
+      <div class="contenedor1" id="contenedor1">
+        <input type="text" placeholder="Search for Name" class="square search_name">
+        <select name="select" id="select_type" class="square select_filter">
+          <option value="">Type</option>
+          <option value="">Normal</option>
+          <option value="">Fighting</option>
+          <option value="">Flying</option>
+          <option value="">Poison</option>
+          <option value="">Ground</option>
+          <option value="">Rock</option>
+          <option value="">Bug</option>
+          <option value="">Ghost</option>
+          <option value="">Steel</option>
+          <option value="">Fire</option> 
+          <option value="">Water</option> 
+          <option value="">Grass</option> 
+          <option value="">Electric</option> 
+          <option value="">Psychic</option> 
+          <option value="">Ice</option> 
+          <option value="">Dragon</option> 
+          <option value="">Dark</option>
+          <option value="">Fairy</option>  
+        </select>
+        <select name="select" id="select_egg" class="square select_filter">
+          <option value="">Egg x Km</option>
+          <option value="">2 Km</option>
+          <option value="">5 Km</option>
+          <option value="">7 Km</option>
+          <option value="">10 Km</option>        
+        </select>
+        <select name="select" id="select_region" class="square select_filter">
+          <option value="">Region</option>
+          <option value="">Kanto</option>
+          <option value="">Johto</option>       
+        </select>
+        <select name="select" id="select_order" class="square select_filter">
+          <option value="" selected disabled>Ordenar</option>
+          <option value="a-z">A-Z</option>
+          <option value="z-a">Z-A</option>
+        </select>
+      </div>
+      <div id="data_Pokemon">
+      </div>
+    </main>
+    <footer class= "footer">
+      <div class="container_Footer">
+        <div class="footer_Links">
+
+        </div>
+        <div class="footer_copyright">         
+            Niantic, Inc. ©2020 Pokémon. ©1995-2020 Nintendo
+            <p>Pokémon and Pokémon character names are trademarks of Nintendo. </p>
+            <p>©2020 Luz Apaza & Roxana Guerra</p>
+        </div>
+      </div>
+      </footer>
     <script src="main.js" type="module"></script>
-  </body>
-</html>
+    </body>
+  </html>

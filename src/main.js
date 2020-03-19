@@ -1,20 +1,22 @@
-// import { example } from './data.js';
+/* eslint-disable eol-last */
+import { filterData } from './data.js';
 import data from './data/pokemon/pokemon.js';
 
-// mostrar los datos en la pantalla
 const dataPokemon = document.getElementById('data_Pokemon');
+const selectType = document.getElementById('select_type');
 
-const typesPokemon = (arrPokemon) => {
+// mostrar los tipos qure tiene un pokemon
+const typesPokemon = (arrTypePokemon) => {
   let styleTypePokemon = '';
-  for (let i = 0; i < arrPokemon.length; i += 1) {
-    styleTypePokemon += `<span class="type_Text pok_type_${arrPokemon[i]}">${arrPokemon[i]}</span>`;
+  for (let i = 0; i < arrTypePokemon.length; i += 1) {
+    styleTypePokemon += `<span class="type_Text pok_type_${arrTypePokemon[i]}">${arrTypePokemon[i]}</span>`;
   }
   return styleTypePokemon;
 };
-
-const allPokemon = () => {
+// mostrar los datos en la pantalla
+const allPokemon = (arrPokemon) => {
   let infoPokemon = '';
-  data.pokemon.forEach((obj) => {
+  arrPokemon.forEach((obj) => {
     infoPokemon += `
     <div class = "info_Pokemon">
         <img src="${obj.img}">
@@ -26,5 +28,12 @@ const allPokemon = () => {
   });
   return infoPokemon;
 };
+// funcion para llamar a filtro
+selectType.addEventListener('change', () => {
+  const valueSelect = selectType.value;
+  if (valueSelect !== '') {
+    dataPokemon.innerHTML = allPokemon(filterData(data.pokemon, valueSelect));
+  }
+});
 
-dataPokemon.innerHTML = allPokemon();
+dataPokemon.innerHTML = allPokemon(data.pokemon);

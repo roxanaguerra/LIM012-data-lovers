@@ -1,5 +1,8 @@
 /* eslint-disable eol-last */
-import { filterData } from './data.js';
+import { 
+  filterData ,
+  sortData
+ } from './data.js';
 import data from './data/pokemon/pokemon.js';
 
 const dataPokemon = document.getElementById('data_Pokemon');
@@ -34,6 +37,16 @@ selectType.addEventListener('change', () => {
   if (valueSelect !== '') {
     dataPokemon.innerHTML = allPokemon(filterData(data.pokemon, valueSelect));
   }
+});
+
+// ORDENAR LOS POKEMONES 
+const orderAlfabetic = document.querySelector ('#select_order');
+console.log(orderAlfabetic);
+orderAlfabetic.addEventListener('change', () => {
+  // dataPokemon.innerHTML = '';
+  const orderSelect = orderAlfabetic.value;
+console.log(orderSelect);
+dataPokemon.innerHTML = allPokemon(sortData(data.pokemon, 'name' , orderSelect));
 });
 
 dataPokemon.innerHTML = allPokemon(data.pokemon);

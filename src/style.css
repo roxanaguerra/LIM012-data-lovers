@@ -112,6 +112,31 @@ footer {
     text-align: center;
     justify-content: flex-end;
 }
+.footer_Links {
+    justify-content: space-between;
+    
+}
+.img_facebook {
+    width: 25px;
+    height: 25px;
+}
+.img_twitter {
+    width: 25px;
+    height: 25px;
+}
+.img_tcp {
+    width: 155px;
+    height: 15px;
+}
+.img_nintendo {
+    width: 106px;
+    height: 26px;
+}
+.img_niantic {
+    width: 50px;
+    height: 60px;
+}
+
 /*********** Estilos de colores para tipo de pokemon ************/
 .pok_type_normal{background-color:#a8a878}
 .pok_type_fire{background-color:#f08030}

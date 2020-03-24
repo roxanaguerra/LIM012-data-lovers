@@ -7,8 +7,20 @@ import data from './data/pokemon/pokemon.js';
 
 const dataPokemon = document.getElementById('data_Pokemon');
 const selectType = document.getElementById('select_type');
+const selectEgg = document.getElementById('select_egg');
+const selectRegion = document.getElementById('select_region');
 
-// mostrar los tipos qure tiene un pokemon
+// mostrar los tipos de egg que tiene un pokemon
+const fillSelectEgg = () => {
+  let infoSelectEgg = '<option value=\'\'>Egg x Km</option>';
+  data.pokemon.forEach((element) => {
+    infoSelectEgg += `<option value="${element.egg}">${element.egg}</option>`;
+    //console.log(infoSelectEgg);
+  });
+  //7console.log(infoSelectEgg);
+}
+
+// cargar datos del arreglo types
 const typesPokemon = (arrTypePokemon) => {
   let styleTypePokemon = '';
   for (let i = 0; i < arrTypePokemon.length; i += 1) {
@@ -16,6 +28,7 @@ const typesPokemon = (arrTypePokemon) => {
   }
   return styleTypePokemon;
 };
+
 // mostrar los datos en la pantalla
 const allPokemon = (arrPokemon) => {
   let infoPokemon = '';
@@ -35,7 +48,21 @@ const allPokemon = (arrPokemon) => {
 selectType.addEventListener('change', () => {
   const valueSelect = selectType.value;
   if (valueSelect !== '') {
-    dataPokemon.innerHTML = allPokemon(filterData(data.pokemon, valueSelect));
+    dataPokemon.innerHTML = allPokemon(filterData(data.pokemon, valueSelect, 1));
+  }
+});
+
+selectEgg.addEventListener('change', () => {
+  const valueSelect = selectEgg.value;
+  if (valueSelect !== '') {
+    dataPokemon.innerHTML = allPokemon(filterData(data.pokemon, valueSelect, 2));
+  }
+});
+
+selectRegion.addEventListener('change', () => {
+  const valueSelect = selectRegion.value;
+  if (valueSelect !== '') {
+    dataPokemon.innerHTML = allPokemon(filterData(data.pokemon, valueSelect, 3));
   }
 });
 

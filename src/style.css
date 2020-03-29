@@ -1,19 +1,21 @@
-html,h5,body {
+﻿html,h5,body {
     margin: 0;
     padding: 0;
     border: 0;
+    display: inline-block;
 }
 body {
     background-color:#E8F5E9;
     font-family: Sans-serif;
     text-align: center;
+    width: 100%;
 }
 /*********** Estilos de Header ************/
 header {
-    width: 100%;
+    /* width: 100%; */
     background: linear-gradient(to right, #639d25, #427768);
     display: flex;
-    height: 75px;
+    height: 4.5rem;
 }
 header img {
     width: 260px;
@@ -21,38 +23,85 @@ header img {
     padding: 0.3em 0.5em;
     float: left;   
 }
+#img-logo:hover {
+    background: linear-gradient(to right, #86a764, #9ce4d0) ; 
+}
+#img-home {
+    width: 40px;
+    height: 40px;
+    /* opacity: 0.5; */
+}
+#img-pokedex {
+    width: 45px;
+    height: 45px;
+}
+#img-about {
+    width: 40px;
+    height: 40px;
+    /* padding-bottom: 1em; */
+    /* opacity: 0.5; */
+}
 .menu {
     list-style: none;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: flex-start; */
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
-.menu li {
+li {
     display: flex;   
     margin-top: 10px;
-    justify-content: right;        
     align-items: center;
+    padding: 0 1em;
 }
+
 a {
-    color: white;
+    color: black;
     text-decoration: none; /*quitar el subrayado de las referencias - link*/    
     cursor: pointer;
     font-family: Sans-serif;
     font-size: 20px;
+    padding-right: 0.5em;
     
 }  
 a:hover { /*cuando el mouse pase por ahi*/
-    background:#ffc107 ; /* rgba(0, 0, 0,.4) */
+    color: white;
+    background: linear-gradient(to right,#9ce4d0, #86a764 ) ;
+    border: inset thin;
 }
+#search_name {
+    width: 25%;
+    height: 40px;
+    /* box-shadow: 0px 3px 5px #639d25; */
+    border: 2px solid #639d25;
+    border-radius: 10px;
+    color: #6E7275; 
+    font-size: 16px;
+    padding-left: 20px;
+    position: absolute;
+    font-family: sans-serif;
+    top: 10px; /*para separarlo de la parte superior*/
+    right: 20px; /*para separarlo de la parte derecha */
+}
+
+header #lupa {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: 10px;
+    right: 20px;
+}
+
 /*********** Estilos main ************/
 main {
-display: flex;
-flex-direction: column;
-padding: 15px 6%;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 6%;
 }
 /*********** Estilos para buscar,filtrar y ordenar ************/
 .square{
-    border: 2px solid #47AC8E;
-    box-sizing: border-box;
+    box-shadow: 0px 3px 5px #427768;
     font-family: sans-serif;
     font-size: 16px;
     color: #6E7275;
@@ -60,12 +109,20 @@ padding: 15px 6%;
     height: 30px;
     margin: 0em 0.4em;
     padding: 0.4em;
+    background: linear-gradient(to right, #d4ecbc, #d5fdf2);
+}
+.square:hover {
+    background: #d5fdf2;
 }
 .search_name {
    width: 400px; 
    height: 2.4em;
 }
 .select_filter {
+    height: auto;
+    cursor: pointer;
+}
+#select_order {
     height: auto;
     cursor: pointer;
 }
@@ -76,13 +133,13 @@ padding: 15px 6%;
 }
 .info_Pokemon {
     background: #FAFAFA;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 5px 7px #427768;
     border-radius: 2px;
     width: 20%;
     min-width: 150px;
     display: inline-block;
     padding: 0.2em 0em;
-    margin: 1% 4%;    
+    margin: 1% 4%;
     color: #1b5e20;
 }
 .num_Pokemon{
@@ -90,14 +147,21 @@ padding: 15px 6%;
     font-weight: bold;
 }
 .info_Pokemon h5{
-    font-size: 1.4em;
+    font-size: 1.3em;
 }
 .type_Text{
     color: #fff;
-    padding: 8px 12px;
-    margin:4px;
+    padding: 4% 8%;
+    margin:2%;
     border-radius: 3px; 
     font-weight: 400;
+}
+.data_PokemonSearch {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 1.5em;
+    width: 100%;
 }
 /*********** Estilos de Footer ************/
 footer {  
@@ -105,16 +169,17 @@ footer {
     background-color: #378B7D;
     background: linear-gradient(to right, #639d25, #427768);
     color: #fff;
-    display: block;
+    display: flex;
     font-size: 13px;
     line-height: 18px;
     padding: 10px 0 30px;
     text-align: center;
-    justify-content: flex-end;
+    justify-content: center;
+    position: absolute;
+    height: 190px;
 }
 .footer_Links {
-    justify-content: space-between;
-    
+    justify-content: space-between;    
 }
 .img_facebook {
     width: 25px;
@@ -136,7 +201,6 @@ footer {
     width: 50px;
     height: 60px;
 }
-
 /*********** Estilos de colores para tipo de pokemon ************/
 .pok_type_normal{background-color:#a8a878}
 .pok_type_fire{background-color:#f08030}
@@ -156,3 +220,41 @@ footer {
 .pok_type_dark{background-color:#705848}
 .pok_type_flying{background-color:#a890f0}
 .pok_type_fighting{background-color:#c02038}
+
+@media screen and (max-width:450px) {
+    body, header, footer  {
+        width: 100%;
+        display: inline-block;
+    }
+    .search_name {
+        top: 10%;
+    }
+    main {
+        padding: 5px 3px;
+        margin: 0;
+    }
+    .data_Pokemon {
+        min-width: 450px;
+    }
+    .info_Pokemon{
+        min-width: 110px;
+        margin: 1% 1px;
+    }
+    .info_Pokemon img{
+        height: 80%;
+        width: 80%;
+    }
+    .type_Text {
+        font-size: 13px;
+    }
+    .info_Pokemon p{
+        margin-top: 8px;
+    }
+    .info_Pokemon h5{
+        /* margin-top: 8px; */
+        font-size: 15px;
+    }
+    .type_Text{
+        padding: 4% 6%;
+    }
+}

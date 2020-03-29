@@ -2,60 +2,75 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Data Lovers - Pokemon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/pokedex.png" type="img/png">
+    <title>PokeAmigos</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="root"></div>
+    <!-- <div id="root"></div> -->
     <header>
-        <a href="index.html"><img src="img/logo_datalovers.png" class="img_logo"></a>
-        <nav>
-          <ul class="menu">
-            <li><a href="">POKEDEX</a></li>
-          </ul>
-        </nav>      
-    </header>      
-    <main>
-      <div class="contenedor1" id="contenedor1">
-        <input type="text" placeholder="Search for Name" class="square search_name">
+      <a href="index.html" id="img-logo"><img src="img/logo_datalovers_2.png" class="img_logo"></a>
+      <nav>
+        <ul class="menu">
+          <li><a href=""><img id="img-home" src="img/home3.png">HOME</a></li>
+          <li><a href=""><img id="img-pokedex" src="img/pokedex7.png">POKEDEX</a></li>
+          <li><a href=""><img id="img-about" src="img/about3.png" alt="">ABOUT</a></li>
+        </ul>
+      </nav>
+      <div class="div_search">
+        <input type="text" id="search_name" placeholder="Search for Name" class="search_name">
+        <img src="img/icono-search2.PNG" id="lupa">  
+      </div> 
+    </header>
+    
+    <main>     
+      <div class="contenedor1" id="contenedor1">        
+        <select name="select" id="select_order" class="square select_order">
+          <option value="" selected disabled>Order</option>
+          <option value="a-z">A-Z</option>
+          <option value="z-a">Z-A</option>
+          <option value="numUp">Number ↑</option>
+          <option value="numDown">Number ↓</option>
+        </select>
         <select name="select" id="select_type" class="square select_filter">
           <option value="">Type</option>
+          <option value="all">All</option>
           <option value="normal">Normal</option>
           <option value="electric">Electric</option>
           <option value="fighting">Fighting</option>
           <option value="flying">Flying</option>
-          <option value="">Poison</option>
-          <option value="">Ground</option>
-          <option value="">Rock</option>
-          <option value="">Bug</option>
-          <option value="">Ghost</option>
-          <option value="">Steel</option>
-          <option value="">Fire</option> 
-          <option value="">Water</option> 
-          <option value="">Grass</option> 
-          <option value="">Psychic</option> 
-          <option value="">Ice</option> 
-          <option value="">Dragon</option> 
-          <option value="">Dark</option>
-          <option value="">Fairy</option>  
+          <option value="poison">Poison</option>
+          <option value="ground">Ground</option>
+          <option value="rock">Rock</option>
+          <option value="bug">Bug</option>
+          <option value="ghost">Ghost</option>
+          <option value="steel">Steel</option>
+          <option value="fire">Fire</option> 
+          <option value="water">Water</option> 
+          <option value="grass">Grass</option> 
+          <option value="psychic">Psychic</option> 
+          <option value="ice">Ice</option> 
+          <option value="dragon">Dragon</option> 
+          <option value="dark">Dark</option>
+          <option value="fairy">Fairy</option> 
         </select>
         <select name="select" id="select_egg" class="square select_filter">
           <option value="">Egg x Km</option>
-          <option value="">2 Km</option>
-          <option value="">5 Km</option>
-          <option value="">7 Km</option>
-          <option value="">10 Km</option>        
+          <option value="all">All</option>
+          <option value="not in eggs">none</option>
+          <option value="2 km">2 Km</option>
+          <option value="5 km">5 Km</option>
+          <option value="7 km">7 Km</option>
+          <option value="10 km">10 Km</option>
         </select>
         <select name="select" id="select_region" class="square select_filter">
           <option value="">Region</option>
-          <option value="">Kanto</option>
-          <option value="">Johto</option>       
+          <option value="all">All</option>
+          <option value="kanto">Kanto</option>
+          <option value="johto">Johto</option>
         </select>
-        <select name="select" id="select_order" class="square select_filter">
-          <option value="" selected disabled>Ordenar</option>
-          <option value="a-z">A-Z</option>
-          <option value="z-a">Z-A</option>
-        </select>
+        
       </div>
       <div id="data_Pokemon">
       </div>

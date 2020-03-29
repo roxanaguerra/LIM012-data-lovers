@@ -1,21 +1,34 @@
 /* eslint-disable eol-last */
-import { 
-  filterData ,
-  sortData
- } from './data.js';
+import {
+  textUpperFirst,
+  filterData,
+  sortData,
+} from './data.js';
 import data from './data/pokemon/pokemon.js';
 
 const dataPokemon = document.getElementById('data_Pokemon');
-const selectType = document.getElementById('select_type');
+const selectFilter = document.querySelectorAll('.select_filter');
+// const searchForName = document.querySelector('#search_name');
 
-// mostrar los tipos qure tiene un pokemon
+// mostrar los tipos de egg que tiene un pokemon
+// const fillSelectEgg = () => {
+//   let infoSelectEgg = '<option value=\'\'>Egg x Km</option>';
+//   data.pokemon.forEach((element) => {
+//     infoSelectEgg += `<option value="${element.egg}">${element.egg}</option>`;
+//     //console.log(infoSelectEgg);
+//   });
+//   //7console.log(infoSelectEgg);
+// }
+
+// cargar datos del arreglo types
 const typesPokemon = (arrTypePokemon) => {
   let styleTypePokemon = '';
   for (let i = 0; i < arrTypePokemon.length; i += 1) {
-    styleTypePokemon += `<span class="type_Text pok_type_${arrTypePokemon[i]}">${arrTypePokemon[i]}</span>`;
+    styleTypePokemon += `<span class="type_Text pok_type_${arrTypePokemon[i]}">${textUpperFirst(arrTypePokemon[i])}</span>`;
   }
   return styleTypePokemon;
 };
+
 // mostrar los datos en la pantalla
 const allPokemon = (arrPokemon) => {
   let infoPokemon = '';
@@ -24,29 +37,39 @@ const allPokemon = (arrPokemon) => {
     <div class = "info_Pokemon">
         <img src="${obj.img}">
         <p class="num_Pokemon">#${obj.num}</p>
-        <h5>${obj.name[0].toUpperCase()}${obj.name.substring(1)}</h5>
+        <h5>${textUpperFirst(obj.name)}</h5>
         <p>${typesPokemon(obj.type)}</p>
     </div>
     `;
   });
   return infoPokemon;
 };
-// funcion para llamar a filtro
-selectType.addEventListener('change', () => {
-  const valueSelect = selectType.value;
-  if (valueSelect !== '') {
-    dataPokemon.innerHTML = allPokemon(filterData(data.pokemon, valueSelect));
-  }
+// funcion para llamar a filtro por tipo
+selectFilter[0].addEventListener('change', () => {
+  const valueSelect = selectFilter;
+  dataPokemon.innerHTML = allPokemon(filterData(data.pokemon, valueSelect));
+});
+// funcion para llamar a filtro por egg
+selectFilter[1].addEventListener('change', () => {
+  const valueSelect = selectFilter;
+  dataPokemon.innerHTML = allPokemon(filterData(data.pokemon, valueSelect));
+});
+// funcion para llamar a filtro por region
+selectFilter[2].addEventListener('change', () => {
+  const valueSelect = selectFilter;
+  dataPokemon.innerHTML = allPokemon(filterData(data.pokemon, valueSelect));
 });
 
-// ORDENAR LOS POKEMONES 
-const orderAlfabetic = document.querySelector ('#select_order');
-console.log(orderAlfabetic);
+// ORDENAR LOS POKEMONES
+const orderAlfabetic = document.querySelector('#select_order');
 orderAlfabetic.addEventListener('change', () => {
-  // dataPokemon.innerHTML = '';
   const orderSelect = orderAlfabetic.value;
-console.log(orderSelect);
-dataPokemon.innerHTML = allPokemon(sortData(data.pokemon, 'name' , orderSelect));
+  dataPokemon.innerHTML = allPokemon(sortData(data.pokemon, orderSelect));
 });
 
 dataPokemon.innerHTML = allPokemon(data.pokemon);
+// search.addEventListener('keyup', filtrarName);
+
+// search.addEventListener('keyup', () => {
+
+// });

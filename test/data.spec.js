@@ -2,7 +2,6 @@ import {
   sortData, filterData, textUpperFirst, searchName,
 } from '../src/data.js';
 
-
 const pokemon = [
   {
     num: '001',

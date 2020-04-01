@@ -59,3 +59,4 @@ export const searchName = (data, property, inputText) => {
   const searchForName = data.filter((element) => (element[property]).indexOf(inputText) !== -1);
   return searchForName;
 };
+

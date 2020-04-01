@@ -8,24 +8,26 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- <div id="root"></div> -->
-    <header>
-      <a href="index.html" id="img-logo"><img src="img/logo_datalovers_2.png" class="img_logo"></a>
-      <nav>
-        <ul class="menu">
-          <li><a href=""><img id="img-home" src="img/home3.png">HOME</a></li>
-          <li><a href=""><img id="img-pokedex" src="img/pokedex7.png">POKEDEX</a></li>
-          <li><a href=""><img id="img-about" src="img/about3.png" alt="">ABOUT</a></li>
-        </ul>
-      </nav>
+    <header class="header">
+      <a href="index.html" class="logo"><img id="img-logo" src="img/logo_datalovers_2.png" ></a>
+      <input class="menu-btn" type="checkbox" id="menu-btn">
+      <label class="menu-icon" for="menu-btn" ><span class="nav-icon"></span></label>
+      <ul class="menu">
+        <li><a class="menu-item" href=""><img id="img-home" src="img/home3.png">HOME</a></li>
+        <li><a class="menu-item" href=""><img id="img-pokedex" src="img/pokedex7.png">POKEDEX</a></li>
+        <li><a class="menu-item" href=""><img id="img-about" src="img/about3.png">ABOUT</a></li>
+      </ul> 
       <div class="div_search">
         <input type="text" id="search_name" placeholder="Search for Name" class="search_name">
+      </div>
+      <div class="div_lupa">
         <img src="img/icono-search2.PNG" id="lupa">  
-      </div> 
+      </div>        
     </header>
     
     <main>     
-      <div class="contenedor1" id="contenedor1">        
+      <div class="conteiner1" id="conteiner1"> 
+        <h5>INFO DE TODO LOS POKEMONES</h5><br>    
         <select name="select" id="select_order" class="square select_order">
           <option value="" selected disabled>Order</option>
           <option value="a-z">A-Z</option>
@@ -70,19 +72,31 @@
           <option value="kanto">Kanto</option>
           <option value="johto">Johto</option>
         </select>
-        
-      </div>
-      <div id="data_Pokemon">
+        <div id="data_Pokemon">
+        </div>
+      </div>      
+      <div id="conteiner2" class="conteiner2">
+        <p>probando ocultar y mostrar</p>
       </div>
     </main>
     <footer class= "footer">
       <div class="container_Footer">
         <div class="footer_Links">
-          <img src="img/facebook.png" alt="" class="img_facebook">
-          <img src="img/twitter.png" alt="" class="img_twitter">
-          <img src="img/tpc.png" alt="" class="img_tcp">
-          <img src="img/nintendo.png" alt="" class="img_nintendo">
-          <img src="img/niantic.png" alt="" class="img_niantic">
+          <a href="https://www.facebook.com/PokemonGO/">            
+            <img src="img/facebook.png" alt="" class="img_facebook">
+          </a>
+          <a href="https://twitter.com/PokemonGoApp">
+            <img src="img/twitter.png" alt="" class="img_twitter">
+          </a>
+          <a href="http://www.pokemon.com/es/">
+            <img src="img/tpc.png" alt="" class="img_tcp">
+          </a>
+          <a href="http://www.nintendo.com">
+            <img src="img/nintendo.png" alt="" class="img_nintendo">
+          </a>
+          <a href="http://www.nianticlabs.com">
+            <img src="img/niantic.png" alt="" class="img_niantic">
+          </a>          
         </div>
         <div class="footer_copyright">         
             Niantic, Inc. ©2020 Pokémon. ©1995-2020 Nintendo

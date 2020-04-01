@@ -1,4 +1,6 @@
-import { sortData, filterData } from '../src/data.js';
+import {
+  sortData, filterData, textUpperFirst, searchName,
+} from '../src/data.js';
 
 
 const pokemon = [
@@ -202,34 +204,34 @@ describe('filterData', () => {
   });
 });
 
+const listName = [{
+  name: 'ivysaur',
+},
+{
+  name: 'bulbasaur',
+},
+{
+  name: 'venusaur',
+},
+{
+  name: 'charmander',
+},
+{
+  name: 'charizard',
+},
+{
+  name: 'squirtle',
+},
+{
+  name: 'wartortle',
+},
+{
+  name: 'blastoise',
+},
+{
+  name: 'misdreavus',
+}];
 describe('sortData', () => {
-  const listName = [{
-    name: 'bulbasaur',
-  },
-  {
-    name: 'ivysaur',
-  },
-  {
-    name: 'venusaur',
-  },
-  {
-    name: 'charmander',
-  },
-  {
-    name: 'charizard',
-  },
-  {
-    name: 'squirtle',
-  },
-  {
-    name: 'wartortle',
-  },
-  {
-    name: 'blastoise',
-  },
-  {
-    name: 'misdreavus',
-  }];
   const nameAZ = [{
     name: 'blastoise',
   },
@@ -345,5 +347,45 @@ describe('sortData', () => {
   });
   it('returns `sortData NumDown`', () => {
     expect(sortData(listNum, 'numDown')).toEqual(numDown);
+  });
+});
+
+describe('textUpperFirst', () => {
+  it('is a function', () => {
+    expect(typeof textUpperFirst).toBe('function');
+  });
+
+  it('returns `Roxana` para `roxana`', () => {
+    expect(textUpperFirst('roxana')).toEqual('Roxana');
+  });
+  it('returns `PIKACHU` para `PIKACHU`', () => {
+    expect(textUpperFirst('PIKACHU')).toEqual('PIKACHU');
+  });
+  it('returns `Gloom` para `Gloom`', () => {
+    expect(textUpperFirst('Gloom')).toEqual('Gloom');
+  });
+  it('returns (vacio)`-` para (vacio)`-`', () => {
+    expect(textUpperFirst('')).toEqual('');
+  });
+});
+
+const nameFilter = [
+  {
+    name: 'venusaur',
+  },
+  {
+    name: 'misdreavus',
+  },
+  {
+    name: 'ivysaur',
+  },
+];
+describe('searchName', () => {
+  it('is a function', () => {
+    expect(typeof searchName).toBe('function');
+  });
+
+  it('returns un array de objetos que contenga la letra `v`', () => {
+    expect(searchName(listName, 'name', 'v')).toEqual(nameFilter);
   });
 });

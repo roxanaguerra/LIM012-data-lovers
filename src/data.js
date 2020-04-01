@@ -1,7 +1,7 @@
 // Funcion devuelve texto con primer caracter en mayuscula y el resto minuscula
 export const textUpperFirst = (text) => {
   let newtext = '';
-  newtext = text.substring(0, 1).toUpperCase() + text.slice(1)
+  newtext = text.substring(0, 1).toUpperCase() + text.slice(1);
   return newtext;
 };
 
@@ -25,18 +25,18 @@ export const filterData = (data, condition) => {
 };
 
 // Funcion para ordenar alfabeticamente por nombre de pokemon
-export const sortData = (data, sortBy, sortOrder) => {
+export const sortData = (data, sortOrder) => {
   let newDataOrder;
   if (sortOrder === 'a-z') {
     newDataOrder = data.sort((a, b) => {
-      if (a[sortBy] > b[sortBy]) {
+      if (a.name > b.name) {
         return 1;
       }
       return -1;
     });
   } else {
     newDataOrder = data.sort((a, b) => {
-      if (a[sortBy] < b[sortBy]) {
+      if (a.name < b.name) {
         return 1;
       }
       return -1;

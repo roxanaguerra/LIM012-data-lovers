@@ -14,7 +14,6 @@ const selectFilter = document.querySelectorAll('.select_filter');
 const searchForName = document.getElementById('search_name');
 const sectionDetail = document.getElementById('section_detail');
 const selectors = document.getElementById('selectors');
-const btnback = document.getElementById('btn_back');
 
 // cargar datos del arreglo types
 const typesPokemon = (arrTypePokemon) => {
@@ -35,10 +34,10 @@ const ShowDataEvolution = (DataEvolution) => {
   let DetailEvolution = '';
   DetailEvolution += `
   <div>
-    <div>
-      <span>${DataEvolution.num} ${textUpperFirst(DataEvolution.name)}</span>
-      <img class="imgMin" src="${rootImg}${DataEvolution.num}${extImg}">
-      <span>candy ${DataEvolution['candy-cost']}</span>
+      <div class="show-evolution">
+        <span>#${DataEvolution.num} ${textUpperFirst(DataEvolution.name)}</span>
+        <img class="imgMin" data-id="${DataEvolution.num}" src="${rootImg}${DataEvolution.num}${extImg}">
+        <span>candy ${DataEvolution['candy-cost']}</span>
       </div>
   </div>
   `;
@@ -53,7 +52,7 @@ const ShowEvolution = (objEvolution) => {
   if (typeof (arrPrevEvol) === 'undefined' && typeof (arrNextEvol) === 'undefined') {
     DetailEvolution = '<p>Pokemon no evolutions</p>';
   } else {
-// pre evoluciones puede tener longitud mayor a 1 ???????
+    // pre evoluciones puede tener longitud mayor a 1 ???????
     if (typeof (arrPrevEvol) !== 'undefined') {
       DetailEvolution = ShowDataEvolution(arrPrevEvol[0]);
       if (Array.isArray(arrPrevEvol[0]['prev-evolution'])) {
@@ -80,24 +79,28 @@ const ShowDetailPokemon = (objPokemon) => {
   let DetailPokemon = '';
   DetailPokemon += `
     <section class="row">
-      <div class = "col-3 info_Pokemon">
+      <div class = "col-3 section_info">
           <img id="${objPokemon.num}" class="imgShowPokemon" src="${objPokemon.img}">
           <p class="num_Pokemon">#${objPokemon.num}</p>
           <h5>${textUpperFirst(objPokemon.name)}</h5>
           <p>${typesPokemon(objPokemon.type)}</p>
       </div>
-      <div class="col-9">
-        <header>Data</header>
+      <div class="col-7 secdet_pokdatos">
+        <header><strong>Data</strong></header>
         <p>${objPokemon.about}</p>
-        <p>Region: ${objPokemon.generation.name} Height: ${objPokemon.size.height} Weight: ${objPokemon.size.weight}</p>
-        <h3>Vulnerable</h3>
+        <span>
+          <img src="img/location.png" class="icon-data"><strong> Region: </strong> ${objPokemon.generation.name}
+           <img src="img/icon-height.png" class="icon-data"><strong> Height: </strong> ${objPokemon.size.height}
+           <img src="img/icon-weight.png" class="icon-data"><strong> Widht: </strong> ${objPokemon.size.weight} 
+        </span>
+        <h3><img src="img/icon-vulne.png" class="icon-data">  Vulnerable</h3>
         <p>${typesPokemon(objPokemon.weaknesses)}</p>
-        <h3>Resistant</h3>
+        <h3><img src="img/icon-resis.png" class="icon-data">  Resistant</h3>
         <p>${typesPokemon(objPokemon.resistant)}</p>
       </div>
     </section>
     <section class="row">
-      <header>Stats</header>
+      <header><strong>Stats</strong></header>
       <table class="col-6">
         <tbody>
           <tr>
@@ -125,16 +128,16 @@ const ShowDetailPokemon = (objPokemon) => {
       <table class="col-6">
         <tbody>
           <tr>
-            <td>Chance</td>
-            <td>${objPokemon['spawn-chance'] * 100}%</td>
+            <td>Chance</td>            
+            <td>${Math.round(objPokemon['spawn-chance'] * 100)}%</td>
           </tr>
           <tr>
             <td>Capture rate</td>
-            <td>${objPokemon.encounter['base-capture-rate'] * 100}%</td>
+            <td>${Math.round(objPokemon.encounter['base-capture-rate'] * 100)}%</td>
           </tr>
           <tr>
             <td>Flee rate</td>
-            <td>${objPokemon.encounter['base-flee-rate'] * 100}%</td>
+            <td>${Math.round(objPokemon.encounter['base-flee-rate'] * 100)}%</td>
           </tr>
           <tr>
             <td>Buddy walk</td>
@@ -148,12 +151,15 @@ const ShowDetailPokemon = (objPokemon) => {
       </table>
     </section>
     <section class="row">
-      <header>Evolution</header>
-      ${ShowEvolution(objPokemon.evolution)}
+      <br>
+      <header><strong>Evolution</strong></header>
+      <div class="section-evolution">${ShowEvolution(objPokemon.evolution)}</div>      
     </section>
     <section class="row">
-      <header>All Moves</header>
-    </section>
+      <br>
+      <header><strong>All Moves</strong></header>
+    </section>    
+    <button id="btn_back" onclick="location.reload()">BACK</button>
   `;
   sectionDetail.innerHTML = DetailPokemon;
 };
@@ -170,20 +176,21 @@ const allPokemon = (arrPokemon) => {
         <h5>${textUpperFirst(obj.name)}</h5>
         <p>${typesPokemon(obj.type)}</p>
     `;
-    //evento click para mostrar detalle pokemon
+    // evento click para mostrar detalle pokemon
     // console.log(divNewInfoPokemon.querySelector('.imgShowPokemon'));
     divNewInfoPokemon.querySelector('.imgShowPokemon').addEventListener('click', (event) => {
       event.preventDefault();
       selectors.classList.add('hide');
       dataPokemon.classList.add('hide');
+      // btnback.classList.add('hide');
       // sectionDetail.classList.remove('hide');
       ShowDetailPokemon(obj);
-      btnback.addEventListener('click', () => {
-        sectionDetail.classList.add('hide');
-        selectors.classList.remove('hide');
-        dataPokemon.classList.remove('hide');
-        sectionDetail.innerHTML = '';
-      });
+      // btnback.addEventListener('click', () => {
+      //   sectionDetail.classList.add('hide');
+      //   selectors.classList.remove('hide');
+      //   dataPokemon.classList.remove('hide');
+      //   sectionDetail.innerHTML = '';
+      // });
     }); // fin de click
     dataPokemon.appendChild(divNewInfoPokemon);
   }); // fin de foreach
@@ -233,11 +240,12 @@ searchForName.addEventListener('keyup', () => {
 
 allPokemon(data.pokemon);
 // que solo me muestre num de pokemon y pre evoluciones
-const arreglo = data.pokemon.filter(element => element.evolution['prev-evolution']);
+// const arreglo = data.pokemon.filter(element => element.evolution['prev-evolution']);
 
-// const arreglo = data.pokemon.map(element => `${element.num} ${element.evolution['prev-evolution']} ${element.evolution['prev-evolution']}`);
+// const arreglo = data.pokemon.map(element => `${element.num}
+// ${element.evolution['prev-evolution']} ${element.evolution['prev-evolution']}`);
 
-console.log(arreglo);
+// console.log(arreglo);
 
 // console.log(data.pokemon[0]);
 // object.values(element.evolution['prev-evolution']);

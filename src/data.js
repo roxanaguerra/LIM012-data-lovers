@@ -23,34 +23,18 @@ export const filterData = (data, condition) => {
 // Funcion para ordenar alfabeticamente por nombre de pokemon
 export const sortData = (data, sortOrder) => {
   let newDataOrder;
-  if (sortOrder === 'a-z') {
-    newDataOrder = data.sort((a, b) => {
-      if (a.name > b.name) {
-        return 1;
-      }
-      return -1;
-    });
-  } else if (sortOrder === 'z-a') {
-    newDataOrder = data.sort((a, b) => {
-      if (a.name < b.name) {
-        return 1;
-      }
-      return -1;
-    });
-  } else if (sortOrder === 'numUp') {
-    newDataOrder = data.sort((a, b) => {
-      if (a.num > b.num) {
-        return 1;
-      }
-      return -1;
-    });
-  } else {
-    newDataOrder = data.sort((a, b) => {
-      if (a.num < b.num) {
-        return 1;
-      }
-      return -1;
-    });
+  switch (sortOrder) {
+    case 'a-z':
+      newDataOrder = data.sort((a, b) => (a.name > b.name ? 1 : -1));
+      break;
+    case 'z-a':
+      newDataOrder = data.sort((a, b) => (a.name < b.name ? 1 : -1));
+      break;
+    case 'numUp': newDataOrder = data.sort((a, b) => (a.num > b.num ? 1 : -1));
+      break;
+    case 'numDown': newDataOrder = data.sort((a, b) => (a.num < b.num ? 1 : -1));
+      break;
+      /* no default */
   }
   return newDataOrder;
 };
@@ -59,4 +43,34 @@ export const searchName = (data, property, inputText) => {
   const searchForName = data.filter((element) => (element[property]).indexOf(inputText) !== -1);
   return searchForName;
 };
-
+//   if (sortOrder === 'a-z') {
+//     newDataOrder = data.sort((a, b) => {
+//       if (a.name > b.name) {
+//         return 1;
+//       }
+//       return -1;
+//     });
+//   } else if (sortOrder === 'z-a') {
+//     newDataOrder = data.sort((a, b) => {
+//       if (a.name < b.name) {
+//         return 1;
+//       }
+//       return -1;
+//     });
+//   } else if (sortOrder === 'numUp') {
+//     newDataOrder = data.sort((a, b) => {
+//       if (a.num > b.num) {
+//         return 1;
+//       }
+//       return -1;
+//     });
+//   } else {
+//     newDataOrder = data.sort((a, b) => {
+//       if (a.num < b.num) {
+//         return -1;
+//       }
+//       return -1;
+//     });
+//   }
+//   return newDataOrder;
+// };

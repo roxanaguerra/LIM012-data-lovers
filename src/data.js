@@ -43,34 +43,28 @@ export const searchName = (data, property, inputText) => {
   const searchForName = data.filter((element) => (element[property]).indexOf(inputText) !== -1);
   return searchForName;
 };
-//   if (sortOrder === 'a-z') {
-//     newDataOrder = data.sort((a, b) => {
-//       if (a.name > b.name) {
-//         return 1;
-//       }
-//       return -1;
-//     });
-//   } else if (sortOrder === 'z-a') {
-//     newDataOrder = data.sort((a, b) => {
-//       if (a.name < b.name) {
-//         return 1;
-//       }
-//       return -1;
-//     });
-//   } else if (sortOrder === 'numUp') {
-//     newDataOrder = data.sort((a, b) => {
-//       if (a.num > b.num) {
-//         return 1;
-//       }
-//       return -1;
-//     });
-//   } else {
-//     newDataOrder = data.sort((a, b) => {
-//       if (a.num < b.num) {
-//         return -1;
-//       }
-//       return -1;
-//     });
-//   }
-//   return newDataOrder;
-// };
+
+// funcion devuelve arreglo con los calculos eps y dps
+// arrmoves arreglo que recibe los tipos de movimientos
+// searchType tipo de pokemon, si es igual al tipo de movimiento aumentar 20%
+export const calcMoves = (arrmoves, arrType) => {
+  const arrResult = arrmoves.map((element) => {
+    let eps = 1;
+    let stab;
+    let dps = 1;
+    const newElement = {};
+    if (arrType.indexOf(element.type) !== -1) {
+      stab = element['base-damage'] * 1.2;
+    } else {
+      stab = element['base-damage'] * 1;
+    }
+    // eslint-disable-next-line operator-assignment
+    eps = (element.energy / element['move-duration-seg']) * eps;
+    // eslint-disable-next-line operator-assignment
+    dps = (stab / element['move-duration-seg']) * dps;
+    newElement.eps = eps;
+    newElement.dps = dps;
+    return newElement;
+  });
+  return arrResult;
+};

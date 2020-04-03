@@ -4,11 +4,10 @@ import {
   filterData,
   sortData,
   searchName,
+  calcMoves,
 } from './data.js';
 import data from './data/pokemon/pokemon.js';
 
-// const conteiner1 = document.getElementById('conteiner1');
-// const allInfoPokemon = document.getElementById('conteiner2');
 const dataPokemon = document.getElementById('data_Pokemon');
 const selectFilter = document.querySelectorAll('.select_filter');
 const searchForName = document.getElementById('search_name');
@@ -31,13 +30,20 @@ const ShowDataEvolution = (DataEvolution) => {
   const dataImg = data.pokemon[0].img;
   const rootImg = dataImg.substring(0, dataImg.length - 7);
   const extImg = dataImg.slice(dataImg.length - 4);
+  const Isname = (DataEvolution.name ? textUpperFirst(DataEvolution.name) : '');
+  let Iscandy;
   let DetailEvolution = '';
+  if (DataEvolution['candy-cost']) {
+    Iscandy = `candy ${DataEvolution['candy-cost']}`;
+  } else {
+    Iscandy = '';
+  }
   DetailEvolution += `
   <div>
       <div class="show-evolution">
-        <span>#${DataEvolution.num} ${textUpperFirst(DataEvolution.name)}</span>
-        <img class="imgMin" data-id="${DataEvolution.num}" src="${rootImg}${DataEvolution.num}${extImg}">
-        <span>candy ${DataEvolution['candy-cost']}</span>
+      <p>${DataEvolution.num} ${Isname}</p>
+      <img class="imgMin" data-id="${DataEvolution.num}" src="${rootImg}${DataEvolution.num}${extImg}">
+      <p>${Iscandy}</p>
       </div>
   </div>
   `;
@@ -45,25 +51,28 @@ const ShowDataEvolution = (DataEvolution) => {
 };
 
 // mostrar detalle de evoluciones puede ser next o prev
-const ShowEvolution = (objEvolution) => {
+// primero verifica que exista evoluciones
+// si hay evoluciones muestra las previas despues las siguientes
+const ShowEvolution = (objEvolution, datnum) => {
   const arrNextEvol = objEvolution['next-evolution'];
   const arrPrevEvol = objEvolution['prev-evolution'];
   let DetailEvolution = '';
   if (typeof (arrPrevEvol) === 'undefined' && typeof (arrNextEvol) === 'undefined') {
     DetailEvolution = '<p>Pokemon no evolutions</p>';
   } else {
-    // pre evoluciones puede tener longitud mayor a 1 ???????
     if (typeof (arrPrevEvol) !== 'undefined') {
-      DetailEvolution = ShowDataEvolution(arrPrevEvol[0]);
       if (Array.isArray(arrPrevEvol[0]['prev-evolution'])) {
-        DetailEvolution += ShowDataEvolution(arrPrevEvol[0]['prev-evolution'][0]);
+        const arrPrev2 = arrPrevEvol[0]['prev-evolution'][0];
+        DetailEvolution = ShowDataEvolution(arrPrev2);
       }
+      DetailEvolution += ShowDataEvolution(arrPrevEvol[0]);
     }
+    DetailEvolution += ShowDataEvolution({ num: datnum, name: '', 'candy-cost': '' });
     if (typeof (arrNextEvol) !== 'undefined') {
       if (arrNextEvol.length > 1) {
         arrNextEvol.forEach((element) => { DetailEvolution += ShowDataEvolution(element); });
       } else {
-        DetailEvolution = ShowDataEvolution(arrNextEvol[0]);
+        DetailEvolution += ShowDataEvolution(arrNextEvol[0]);
         if (Array.isArray(arrNextEvol[0]['next-evolution'])) {
           const arrNext2 = arrNextEvol[0]['next-evolution'][0];
           DetailEvolution += ShowDataEvolution(arrNext2);
@@ -74,10 +83,29 @@ const ShowEvolution = (objEvolution) => {
   return DetailEvolution;
 }; // fin de funcion ShowEvolution
 
+// funcion muestra detalle de los movimientos
+// funcion calcMoves envia el arreglo para realizar los calculos
+const ShowMoves = (arrMoves, arrtype) => {
+  let DetailMoves = '';
+  const resumen = calcMoves(arrMoves, arrtype);
+  arrMoves.forEach((element, index) => {
+    DetailMoves += `
+    <tr>
+      <td><h4>${textUpperFirst(element.name)}</h4> <p class="type_Text pok_type_${element.type}">${element.type}</p></td>
+      <td>${element['base-damage']}</td>
+      <td>${resumen[index].eps.toFixed(1)}</td>
+      <td>${resumen[index].dps.toFixed(1)}</td>  
+    </tr>
+    `;
+  });
+  return DetailMoves;
+};
+
 // mostrar detalle de los pokemons
 const ShowDetailPokemon = (objPokemon) => {
   let DetailPokemon = '';
   DetailPokemon += `
+  <button id="btn_back" onclick="location.reload()">BACK</button>  
     <section class="row">
       <div class = "col-3 section_info">
           <img id="${objPokemon.num}" class="imgShowPokemon" src="${objPokemon.img}">
@@ -151,13 +179,33 @@ const ShowDetailPokemon = (objPokemon) => {
       </table>
     </section>
     <section class="row">
-      <br>
       <header><strong>Evolution</strong></header>
-      <div class="section-evolution">${ShowEvolution(objPokemon.evolution)}</div>      
+      <div class="section-evolution">${ShowEvolution(objPokemon.evolution, objPokemon.num)}</div>      
     </section>
     <section class="row">
-      <br>
-      <header><strong>All Moves</strong></header>
+      <header><h3>All Moves</h3></header>
+      <table class="col-12 move">
+        <tbody>
+          <tr>
+            <td><h4>Quick Moves</h4></td>
+            <td><h5>Damage<h5></td>
+            <td><h5>EPS<h5></td>
+            <td><h5>DPS<h5></td>
+          </tr>
+          ${ShowMoves(objPokemon['quick-move'], objPokemon.type)}
+        </tbody>
+      </table>
+      <table class="col-12 move">
+        <tbody>
+          <tr>
+            <td><h4>Special Attack</h4></td>
+            <td><h5>Damage<h5></td>
+            <td><h5>EPS<h5></td>
+            <td><h5>DPS<h5></td>
+          </tr>
+          ${ShowMoves(objPokemon['special-attack'], objPokemon.type)}
+        </tbody>
+      </table>
     </section>    
     <button id="btn_back" onclick="location.reload()">BACK</button>
   `;
@@ -177,20 +225,11 @@ const allPokemon = (arrPokemon) => {
         <p>${typesPokemon(obj.type)}</p>
     `;
     // evento click para mostrar detalle pokemon
-    // console.log(divNewInfoPokemon.querySelector('.imgShowPokemon'));
     divNewInfoPokemon.querySelector('.imgShowPokemon').addEventListener('click', (event) => {
       event.preventDefault();
       selectors.classList.add('hide');
       dataPokemon.classList.add('hide');
-      // btnback.classList.add('hide');
-      // sectionDetail.classList.remove('hide');
       ShowDetailPokemon(obj);
-      // btnback.addEventListener('click', () => {
-      //   sectionDetail.classList.add('hide');
-      //   selectors.classList.remove('hide');
-      //   dataPokemon.classList.remove('hide');
-      //   sectionDetail.innerHTML = '';
-      // });
     }); // fin de click
     dataPokemon.appendChild(divNewInfoPokemon);
   }); // fin de foreach
@@ -239,17 +278,3 @@ searchForName.addEventListener('keyup', () => {
 });
 
 allPokemon(data.pokemon);
-// que solo me muestre num de pokemon y pre evoluciones
-// const arreglo = data.pokemon.filter(element => element.evolution['prev-evolution']);
-
-// const arreglo = data.pokemon.map(element => `${element.num}
-// ${element.evolution['prev-evolution']} ${element.evolution['prev-evolution']}`);
-
-// console.log(arreglo);
-
-// console.log(data.pokemon[0]);
-// object.values(element.evolution['prev-evolution']);
-// array.isArray(arreglo);
-
-// console.log(data.pokemon[0]);
-// ShowDetailPokemon(data.pokemon[5]);

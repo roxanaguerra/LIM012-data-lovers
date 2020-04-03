@@ -4,8 +4,8 @@
 
 * [1. Definición del proyecto](#1-definicion-del-proyecto)
 * [2. Objetivos del Proyecto](#2-objetivos-del-proyecto)
-* [3. Usuario](#2-usuario)
-* [4. Testeos de usabilidad](#2-testeos-de-usabilidad)
+* [3. Usuario](#3-usuario)
+* [4. Testeos de usabilidad](#4-testeos-de-usabilidad)
 * [5. Objetivos de aprendizaje](#5-objetivos-de-aprendizaje)
 * [6. Checklist](#6-checklist)
 

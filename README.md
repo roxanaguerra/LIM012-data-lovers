@@ -2,7 +2,7 @@
 
 ## Índice
 
-* [1. Definición del proyecto](#1-definicion-del-proyecto)
+* [1. Definición del proyecto](#1-definición-del-proyecto)
 * [2. Instalación](#2-instalación)
 * [3. Demo](#3-demo)
 * [4. Pruebas Unitarias](#4-pruebas-unitarias)
@@ -28,7 +28,7 @@ Puedes encontrar mas rápido un pokémon buscando por su nombre, filtrando por s
 ## 4. Pruebas Unitarias
 - Ejecuta las pruebas `npm test`
 
-## 5. Vistas de la Interfaz
+## 5. Vista de la Interfaz
 ![vista](/src/screen/pokemon.gif)
 
 ### Agradecimientos 
